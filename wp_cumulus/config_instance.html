@@ -1,0 +1,205 @@
+<?php // $Id: config_instance.html,v 1.2 2010/04/25 20:55:24 vf Exp $ //
+
+print_box_start();
+?>
+<table cellpadding="9" cellspacing="0" class="blockconfigtable">
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('blocktitle', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+            if (!isset($this->config->title)) $this->config->title = '';
+        ?>
+        <input type="text" name="title" value="<?php echo @$this->config->title ?>" /><br/>
+        <?php
+        print_string('emptytitleadvice', 'block_wp_cumulus');
+        ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('widthlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+            if (!isset($this->config->width)) $this->config->width = 160;
+        ?>
+        <input type="text" name="width" value="<?php echo @$this->config->width ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('heightlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+            if (!isset($this->config->height)) $this->config->height = 160;
+        ?>
+        <input type="text" name="height" value="<?php echo @$this->config->height ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('tcolorlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+            if (!isset($this->config->bgcolor)) $this->config->tcolor = '000000';
+        ?>
+        <input type="text" name="tcolor" value="<?php echo @$this->config->tcolor ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('bgcolorlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <input type="text" name="bgcolor" value="<?php echo @$this->config->bgcolor ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('translabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+	        $yeschecked = (!empty($this->config->trans)) ?  ' checked="checked"' : '' ; 
+	        $nochecked = (empty($this->config->trans)) ?  ' checked="checked"' : '' ; 
+            echo "<input type=\"radio\" name=\"trans\" value=\"1\" {$yeschecked} />";
+            print_string('yes');
+            echo "<input type=\"radio\" name=\"trans\" value=\"0\" {$nochecked} />";
+            print_string('no');
+	        echo '<br />'.get_string('transdesc', 'block_wp_cumulus');
+        ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('speedlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+            if (!isset($this->config->speed)) $this->config->speed = '100';
+        ?>
+        <input type="text" name="speed" value="<?php echo @$this->config->speed ?>" />
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('distributionlabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+	        $yeschecked = (isset($this->config->distr) && $this->config->distr == 1) ?  ' checked="checked"' : '' ; 
+	        $nochecked = (!isset($this->config->distr) || $this->config->distr == 0) ?  ' checked="checked"' : '' ; 
+            echo "<input type=\"radio\" name=\"distr\" value=\"1\" {$yeschecked} />";
+	        echo get_string('yes');
+            echo " - <input type=\"radio\" name=\"distr\" value=\"0\" {$nochecked} />";
+	        echo get_string('no');
+	        echo '<br/>'.get_string('distributiondesc', 'block_wp_cumulus');
+        ?>
+    </td>
+</tr>
+
+
+<tr valign="top">
+    <td colspan="2"><?php print_heading(get_string('outputopts', 'block_wp_cumulus'), 'left', 3) ?></td>
+</tr>
+
+<tr valign="top">
+    <td><b><?php print_string('display', 'block_wp_cumulus') ?></b></td>
+	<td>
+	    <?php
+	        $checked['tags'] = (isset($this->config->mode) && $this->config->mode == 'tags') ? ' checked="checked" ' : '';
+	        $checked['cats'] = (isset($this->config->mode) && $this->config->mode == 'cags') ? ' checked="checked" ' : '';
+	        $checked['both'] = (isset($this->config->mode) && $this->config->mode == 'both') ? ' checked="checked" ' : '';	        
+	        echo "<input type=\"radio\" name=\"mode\" value=\"tags\" {$checked['tags']} />";
+	        echo get_string('tags', 'block_wp_cumulus').'<br/>';
+	        echo "<input type=\"radio\" name=\"mode\" value=\"cats\" {$checked['cats']} />";
+	        echo get_string('cats', 'block_wp_cumulus').'<br/>';
+	        echo "<input type=\"radio\" name=\"mode\" value=\"both\" {$checked['both']} />";
+	        echo get_string('both', 'block_wp_cumulus').'<br/>';
+	    ?>
+	 </td>
+</tr>
+
+<tr valign="top">
+    <td colspan="2">
+        <?php print_heading(get_string('advancedopts', 'block_wp_cumulus'), 'left', 3) ?><br/>
+        <p><?php print_string('advancedadvice', 'block_wp_cumulus') ?></p>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('wp_tag_cloud_parameters', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <input type="text" name="args" value="<?php echo @$this->config->args ?>" />
+        <br/><?php print_string('advancedargsdesc', 'block_wp_cumulus') ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('compmodelabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+	        $yeschecked = (!empty($this->config->compmode)) ?  ' checked="checked"' : '' ; 
+	        $nochecked = (empty($this->config->compmode)) ?  ' checked="checked"' : '' ; 
+            echo "<input type=\"radio\" name=\"compmode\" value=\"1\" {$yeschecked} />";
+            print_string('yes');
+            echo "<input type=\"radio\" name=\"compmode\" value=\"0\" {$nochecked} />";
+            print_string('no');
+	        echo '<br />'.get_string('compmodedesc', 'block_wp_cumulus');
+        ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('showwptagslabel', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <?php
+	        $yeschecked = (!empty($this->config->showwptags)) ?  ' checked="checked"' : '' ; 
+	        $nochecked = (empty($this->config->showwptags)) ?  ' checked="checked"' : '' ; 
+            echo "<input type=\"radio\" name=\"showwptags\" value=\"1\" {$yeschecked} />";
+            print_string('yes');
+            echo "<input type=\"radio\" name=\"showwptags\" value=\"0\" {$nochecked} />";
+            print_string('no');
+	        echo '<br />'.get_string('showwptagsdesc', 'block_wp_cumulus');
+        ?>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td class="label">
+        <?php print_string('tagcloud', 'block_wp_cumulus') ?>
+    </td>
+    <td class="value">
+        <textarea name="tagcloud" cols="60" rows="10" /><?php echo @$this->config->tagcloud ?></textarea>
+        <br/><?php print_string('tagclouddesc', 'block_wp_cumulus') ?>
+    </td>
+</tr>
+
+
+<tr>
+    <td colspan="2" class="submit">
+        <input type="submit" value="<?php print_string('savechanges') ?>" />
+    </td>
+</tr>
+</table>
+<?php
+print_box_end();
+?>
